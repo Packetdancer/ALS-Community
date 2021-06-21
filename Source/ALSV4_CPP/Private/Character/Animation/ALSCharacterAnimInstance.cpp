@@ -48,6 +48,23 @@ const FName NAME__ALSCharacterAnimInstance__root(TEXT("root"));
 FName UALSCharacterAnimInstance::NAME_ik_foot_l(TEXT("ik_foot_l"));
 FName UALSCharacterAnimInstance::NAME_ik_foot_r(TEXT("ik_foot_r"));
 
+UALSCharacterAnimInstance::UALSCharacterAnimInstance(const FObjectInitializer& ObjectInitializer) : UAnimInstance(ObjectInitializer) 
+{
+
+	// Set up Foot IK adjustment defaults
+	FootIKAdjustments.Left.FootOffsetLocation = FVector::ZeroVector;
+	FootIKAdjustments.Left.FootOffsetRotation = FRotator::ZeroRotator;
+	FootIKAdjustments.Left.KneeOffsetLocation = FVector(20.0f, 30.0f, 0.0f);
+	FootIKAdjustments.Left.KneeOffsetRotation = FRotator::ZeroRotator;
+
+	FootIKAdjustments.Right.FootOffsetLocation = FVector::ZeroVector;
+	FootIKAdjustments.Right.FootOffsetRotation = FRotator::ZeroRotator;
+	FootIKAdjustments.Right.KneeOffsetLocation = FVector(-20.0f, -30.0f, 0.0f);
+	FootIKAdjustments.Right.KneeOffsetRotation = FRotator::ZeroRotator;
+
+	FootIKAdjustments.PelvisAdjustment = FVector::ZeroVector;
+
+}
 
 void UALSCharacterAnimInstance::NativeInitializeAnimation()
 {

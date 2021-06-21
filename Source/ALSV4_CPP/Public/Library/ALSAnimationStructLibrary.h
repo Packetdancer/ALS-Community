@@ -374,6 +374,50 @@ struct FALSAnimGraphFootIK
 };
 
 USTRUCT(BlueprintType)
+struct FALSFootIKCorrectionOneSide {
+
+	GENERATED_BODY()
+
+	/** A final adjustment for the foot animating, applied at the end of calculation. */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Configuration|Anim Graph - Foot IK")
+	FVector FootOffsetLocation;
+
+	/** A final adjustment for the foot when animating, applied at the end of calculation. */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Configuration|Anim Graph - Foot IK")
+	FRotator FootOffsetRotation;
+
+	/** A final adjustment for the knee when animating. */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Configuration|Anim Graph - Foot IK")
+	FVector KneeOffsetLocation;
+
+	/** A final adjustment for the knee when animating. */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Configuration|Anim Graph - Foot IK")
+	FRotator KneeOffsetRotation;
+};
+
+USTRUCT(BlueprintType)
+struct FALSFootIKCorrectionConfiguration
+{
+	GENERATED_BODY()
+
+	/** Adjustments for the left side of the IK animations, to account for differing skeletons. */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Configuration|Anim Graph - Foot IK", Meta = (
+		ShowOnlyInnerProperties
+	))
+	FALSFootIKCorrectionOneSide Left;
+
+	/** Adjustments for the right side of the IK animations, to account for differing skeletons. */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Configuration|Anim Graph - Foot IK", Meta = (
+		ShowOnlyInnerProperties
+	))
+	FALSFootIKCorrectionOneSide Right;
+
+	/** An adjustment to the pelvis, to account for differing skeletons. */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Configuration|Anim Graph - Foot IK")
+		FVector PelvisAdjustment;
+};
+
+USTRUCT(BlueprintType)
 struct FALSAnimTurnInPlace
 {
 	GENERATED_BODY()

@@ -31,6 +31,9 @@ class ALSV4_CPP_API UALSCharacterAnimInstance : public UAnimInstance
 	GENERATED_BODY()
 
 public:
+
+	UALSCharacterAnimInstance(const FObjectInitializer& ObjectInitializer);
+
 	virtual void NativeInitializeAnimation() override;
 
 	virtual void NativeBeginPlay() override;
@@ -311,6 +314,12 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Configuration|Anim Graph - Foot IK")
 	FName IkFootR_BoneName = NAME_ik_foot_r;
 
+	/** Adjust IK for different imported skeletons - used in blueprint for easier preview. */
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Configuration|Anim Graph - Foot IK", Meta = (
+		ShowOnlyInnerProperties
+	))
+	FALSFootIKCorrectionConfiguration FootIKAdjustments;
+
 private:
 	FTimerHandle OnPivotTimer;
 
@@ -321,4 +330,5 @@ private:
 	bool bCanPlayDynamicTransition = true;
 
 	UALSDebugComponent* DebugComponent = nullptr;
+
 };
